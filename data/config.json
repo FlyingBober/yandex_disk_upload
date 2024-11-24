@@ -1,0 +1,5 @@
+{
+  "token": "ваш_токен",
+  "url": "https://cloud-api.yandex.net/v1",
+  "directory": "папка_для_синхронизации"
+}  
