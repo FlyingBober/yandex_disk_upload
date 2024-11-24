@@ -53,8 +53,8 @@ def create_local_folders(yandex_folders, parent_folder=LOCAL_DIRECTORY):
         if not os.path.exists(local_path):
             os.makedirs(local_path)
             print(f'Создана папка: {local_path}')
-        else:
-            print(f'Папка уже существует: {local_path}')
+        #else:
+            #print(f'Папка уже существует: {local_path}')
 
 # Удаление папок в локальном каталоге
 def delete_local_folders(missing_folders, parent_folder=LOCAL_DIRECTORY):
