@@ -9,7 +9,7 @@ import shutil
 home_dir = os.environ.get('HOME')
 with open('data/config.json', 'r') as f:
     settings = json.load(f)    
-YANDEX_DISK_API_URL = settings['url']
+YANDEX_DISK_API_URL = settings['url'] + "/disk/resources"
 TOKEN = settings['token']
 LOCAL_DIRECTORY = home_dir + "/" + settings['directory']
 yandex_folders = [] # глобальная переменная что бы получить итоговый список из рекурсивной функции
