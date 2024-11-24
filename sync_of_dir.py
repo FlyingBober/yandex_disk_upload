@@ -12,7 +12,7 @@ with open('data/config.json', 'r') as f:
 YANDEX_DISK_API_URL = settings['url']
 TOKEN = settings['token']
 LOCAL_DIRECTORY = home_dir + "/" + settings['directory']
-yandex_folders = []
+yandex_folders = [] # глобальная переменная что бы получить итоговый список из рекурсивной функции
 
 # Функция для получения информации о директории
 def get_folder_info(folder_id='/'):
@@ -64,12 +64,12 @@ def delete_local_folders(missing_folders, parent_folder=LOCAL_DIRECTORY):
         else:
             local_path = parent_folder + folder
         if os.path.exists(local_path):
-            shutil.rmtree(local_path)
+            shutil.rmtree(local_path) # удаляет рекурсивно вместе с начинкой
             print(f'Удалена папка: {local_path}')
         else:
             print(f'Папки не существует: {local_path}')
 
-
+# Получение списка локальных директорий
 def get_local_folders(directory):
     all_folders = []
     try:
@@ -91,25 +91,16 @@ def compare_folders(local_folders, yandex_folders):
     return missing_folders
 
 def main():
-
-
-
     all_local_folders = get_local_folders(LOCAL_DIRECTORY)
-    #print('Локальные папки:', all_local_folders)
-
     max_nesting_level = max_depth()
     try:
         yandex_folders.remove('/')
     except:
         print("Список корректен. Продолжаем...")
     print(f'Максимальная глубина вложенности папок: {max_nesting_level}')
-
     missing_folders = compare_folders(all_local_folders, yandex_folders)
     delete_local_folders(missing_folders)
-    #os.system('clear')
-    #exit(0)
     create_local_folders(yandex_folders)
-
 
 if __name__ == '__main__':
     main()
